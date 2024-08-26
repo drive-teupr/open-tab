@@ -121,7 +121,7 @@ def norm1Filter(lalu, akhir, blth_lalu, blth_kini):
 
 def upload():
     st.title("Upload Excel File")
-    uploaded_file = st.file_uploader("Choose an Excel file", type="xlsx")
+    uploaded_file = st.file_uploader("Choose an Excel file")
     if uploaded_file is not None:
         data = pd.read_excel(uploaded_file)
         st.write("File uploaded successfully!")
