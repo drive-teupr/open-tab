@@ -13,7 +13,9 @@ def open_page(url):
 # Contoh DataFrame dengan kolom 'URL'
 data = {
     "Nama Situs": ["Google", "GitHub", "LinkedIn"],
-    "URL": ["https://www.google.com", "https://www.github.com", "https://www.linkedin.com"]
+    "URL": ["https://portalapp.iconpln.co.id/acmt/DisplayBlobServlet1?idpel=325100092874&blth=202407&unitup=32510", 
+            "https://portalapp.iconpln.co.id/acmt/DisplayBlobServlet1?idpel=325100204640&blth=202407&unitup=32510", 
+            "https://portalapp.iconpln.co.id/acmt/DisplayBlobServlet1?idpel=325100086032&blth=202407&unitup=32510"]
 }
 df = pd.DataFrame(data)
 
