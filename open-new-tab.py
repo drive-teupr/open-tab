@@ -168,58 +168,58 @@ with col[0]:
     file_lalu = st.file_uploader("Upload Data Periode Sebelumnya")
     file_akhir = st.file_uploader("Upload Data Periode Sekarang")
 
-if st.button("Proses"):
-    lalu = pd.read_excel(file_lalu)
-    akhir = pd.read_excel(file_akhir)
+# if st.button("Proses"):
+lalu = pd.read_excel(file_lalu)
+akhir = pd.read_excel(file_akhir)
+
+with col[1]:
+    st.markdown('#### Main')
+    tabs = st.tabs(['SEMUA','KWH MAKS', 'NORMAL', 'NORMAL > 900', '0-40 JN'])
+    for i, tab in enumerate(tabs):
+        tabs[i].write()
+
+with tabs[0]:
+    st.write("Semua")
+    st.dataframe(copyDataframe(lalu, akhir, blth_lalu, blth_kini))
+
+with tabs[1]: 
+    st.write("KWH Maks > 720 JN")
+    df_maks = maksFilter(lalu, akhir, blth_lalu, blth_kini)
+    st.dataframe(df_maks)
     
-    with col[1]:
-        st.markdown('#### Main')
-        tabs = st.tabs(['SEMUA','KWH MAKS', 'NORMAL', 'NORMAL > 900', '0-40 JN'])
-        for i, tab in enumerate(tabs):
-            tabs[i].write()
+    data = {
+    "Nama Situs": ["Google", "GitHub", "LinkedIn"],
+    "URL": ["https://www.google.com", "https://www.github.com", "https://www.linkedin.com"]
+    }
+    df = pd.DataFrame(data)
 
-    with tabs[0]:
-        st.write("Semua")
-        st.dataframe(copyDataframe(lalu, akhir, blth_lalu, blth_kini))
+    st.dataframe(df)
 
-    with tabs[1]: 
-        st.write("KWH Maks > 720 JN")
-        df_maks = maksFilter(lalu, akhir, blth_lalu, blth_kini)
-        st.dataframe(df_maks)
-        
-        data = {
-        "Nama Situs": ["Google", "GitHub", "LinkedIn"],
-        "URL": ["https://www.google.com", "https://www.github.com", "https://www.linkedin.com"]
-        }
-        df = pd.DataFrame(data)
+    if st.button("Buka Semua URL"):
+        for url in df['URL']:
+            open_page(url)
 
-        st.dataframe(df)
+    # open_web(df_maks)
+    # show_image_maks(lalu, akhir, blth_lalu, blth_kini)
 
-        if st.button("Buka Semua URL"):
-            for url in df['URL']:
-                open_page(url)
+with tabs[2]:
+    st.write("Normal Daya 450-900 VA")
+    df_norm1 = norm1Filter(lalu, akhir, blth_lalu, blth_kini)
+    st.dataframe(df_norm1)
 
-        # open_web(df_maks)
-        # show_image_maks(lalu, akhir, blth_lalu, blth_kini)
+with tabs[3]:
+    st.write("Normal Daya > 900")
+    df_norm2 = norm2Filter(lalu, akhir, blth_lalu, blth_kini)
+    st.dataframe(df_norm2)
 
-    with tabs[2]:
-        st.write("Normal Daya 450-900 VA")
-        df_norm1 = norm1Filter(lalu, akhir, blth_lalu, blth_kini)
-        st.dataframe(df_norm1)
+with tabs[4]:
+    st.write("KWH Nol 40 JN")
+    df_minNol = minNolFilter(lalu, akhir, blth_lalu, blth_kini)
+    st.dataframe(df_minNol)
+    # open_web(df_minNol)
 
-    with tabs[3]:
-        st.write("Normal Daya > 900")
-        df_norm2 = norm2Filter(lalu, akhir, blth_lalu, blth_kini)
-        st.dataframe(df_norm2)
-
-    with tabs[4]:
-        st.write("KWH Nol 40 JN")
-        df_minNol = minNolFilter(lalu, akhir, blth_lalu, blth_kini)
-        st.dataframe(df_minNol)
-        # open_web(df_minNol)
-
-        # if st.button("Lihat Foto DLPD 0-40 JN"):
-        #     for index, row in df_minNol.iterrows():
-        #         url = row['FOTO_AKHIR']
-        #         open_web(url)
-        # show_image_minnol(lalu, akhir, blth_lalu, blth_kini)
+    # if st.button("Lihat Foto DLPD 0-40 JN"):
+    #     for index, row in df_minNol.iterrows():
+    #         url = row['FOTO_AKHIR']
+    #         open_web(url)
+    # show_image_minnol(lalu, akhir, blth_lalu, blth_kini)
