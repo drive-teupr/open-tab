@@ -9,4 +9,4 @@ def open_page(url):
     """ % (url)
     html(open_script)
 
-st.button('Open link', on_click=open_page('https://streamlit.io'))
+st.button('Open link', on_click=open_page('https://google.com'))
